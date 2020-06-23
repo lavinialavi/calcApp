@@ -9,8 +9,6 @@ class Calculator {
         this.currentOperand = ''
         this.previousOperand = ''
         this.operation = undefined
-
-
     }
 
     delete() {
@@ -84,13 +82,12 @@ class Calculator {
             this.getDisplayNumber(this.currentOperand)
         if (this.operation != null) {
             this.previousOperandTextElement.innerText =
-                `${this.getDisplayNumber} ${this.operation}`
+                `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
         } else {
             this.previousOperandTextElement.innerText = ''
         }
     }
 }
-
 
 const numberButtons = document.querySelectorAll(`[data-number]`)
 const operationButtons = document.querySelectorAll(`[data-operation]`)
