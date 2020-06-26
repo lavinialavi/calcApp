@@ -16,10 +16,25 @@ class Calculator {
     }
 
     appendNumber(number) {
+
         if (number === '.' && this.currentOperand.includes('.')) return
+
+        if (number === '.' && this.currentOperand === "") {
+            number = "0" + number.toString()
+
+        }
+
         this.currentOperand = this.currentOperand.toString() + number.toString()
     }
     chooseOperation(operation) {
+        const permitedOperations = ["+", "-", "'÷", "*"]
+        if (permitedOperations.includes(this.operation) && permitedOperations.includes(operation)) {
+
+          
+            this.updateDisplay()
+        }
+    
+
         if (this.currentOperand === '') return
         if (this.previousOperand !== '') {
             this.compute()
@@ -30,9 +45,17 @@ class Calculator {
     }
 
     compute() {
+        
         let computation
         const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
+        const permitedOperations = ["+", "-", "'÷", "*"]
+
+        if (permitedOperations.includes(current)) {
+            this.currentOperand = current
+            return
+        }
+
         if (isNaN(prev) || isNaN(current)) return
         switch (this.operation) {
             case '+':
